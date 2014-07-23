@@ -1,46 +1,110 @@
-﻿body {
+﻿
+/*common*/
+body {
     font-family: 'Audiowide', cursive;
     font-size: 2em;
-    background-image: url(../Images/05822_HD.jpg);
     background-size: cover;
-}
-
-#wrapper {
-    width: 800px;
-    // border: 1px solid red;
-    margin: 100px auto;
-}
-
-ul li, h1 {
-    text-align: center;
-    list-style: none;
-    padding-bottom: 50px;
     color: white;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: context-menu;
+    text-shadow: rgba(0,0,0,0.5) 3px 2px;
 }
 
-h1 {
-    text-shadow: rgb(255,0,0) 5px 5px;
-    color: rgb(71,255,255);
+    body #wrapper {
+        width: 1000px;
+        margin: 100px auto;
+    }
+
+        body #wrapper ul li, body #wrapper ul, h1 {
+            text-align: center;
+            list-style: none;
+            padding: 0;
+            padding-bottom: 50px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: context-menu;
+            width: 0 auto;
+        }
+
+        body #wrapper h1 {
+            text-shadow: rgb(255,0,0) 5px 5px;
+            color: rgb(71,255,255);
+        }
+
+
+        body #wrapper a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 15px;
+        }
+
+            body #wrapper a:hover {
+                transition: ease 0.3s;
+                background-color: dodgerblue;
+                border: 5px solid;
+                border-color: #04316F #0853BC #1566D5 #417FD4;
+            }
+
+/*Home page*/
+
+#home {
+    background-image: url(../Images/05822_HD.jpg);
 }
 
-a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 15px;
+
+
+
+
+/*Game page*/
+
+
+#game {
+    background-image: url(../res/background.jpg);
 }
 
-    a:hover {
+    #game canvas {
+        border: 1px solid red;
+        display: block;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+
+
+/*about page*/
+
+body#about {
+    background-image: url(../Images/06010_HD.jpg);
+}
+
+#about #wrapper {
+    margin: 0 auto;
+}
+
+    #about #wrapper ul li, #about #wrapper ul, #about h1 {
+        padding-bottom: 10px;
+    }
+
+body#about ul li {
+    display: inline-block;
+    border: 5px solid none;
+}
+
+#about #wrapper section a {
+    padding: 0;
+}
+
+    #about #wrapper section a:hover {
         transition: ease 0.3s;
-        background-color: dodgerblue;
-        border: 5px solid;
-        border-color: #04316F #0853BC #1566D5 #417FD4;
+        background-color: transparent;
+        border: none;
+        border-color: transparent;
     }
