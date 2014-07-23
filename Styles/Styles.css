@@ -1,0 +1,46 @@
+﻿body {
+    font-family: 'Audiowide', cursive;
+    font-size: 2em;
+    background-image: url(../Images/05822_HD.jpg);
+    background-size: cover;
+}
+
+#wrapper {
+    width: 800px;
+    // border: 1px solid red;
+    margin: 100px auto;
+}
+
+ul li, h1 {
+    text-align: center;
+    list-style: none;
+    padding-bottom: 50px;
+    color: white;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: context-menu;
+}
+
+h1 {
+    text-shadow: rgb(255,0,0) 5px 5px;
+    color: rgb(71,255,255);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+    a:hover {
+        transition: ease 0.3s;
+        background-color: dodgerblue;
+        border: 5px solid;
+        border-color: #04316F #0853BC #1566D5 #417FD4;
+    }
