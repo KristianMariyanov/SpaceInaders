@@ -122,6 +122,12 @@
         // pressed
         if (input.isPressed(32)) { // Space
             bullets.push(new Bullet(player.x + 10, player.y, -8, 2, 6, "#fff"));
+			var shootSfx = document.getElementById("shoot");
+			var soundcheck = document.getElementById("soundsCheck");
+			if(soundcheck.checked == 1) {
+				shootSfx.play();
+				shootSfx.currentTime=0;
+			}
         }
 
         // update all bullets position and checks
