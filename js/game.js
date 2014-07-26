@@ -31,11 +31,14 @@
         img.addEventListener("load", function () {
 
             alSprite = [
-                [new Sprite(this, 0, 0, 22, 16), new Sprite(this, 0, 16, 22, 16)],
-                [new Sprite(this, 22, 0, 16, 16), new Sprite(this, 22, 16, 16, 16)],
-                [new Sprite(this, 38, 0, 24, 16), new Sprite(this, 38, 16, 24, 16)]
+                [new Sprite(this, 0, 0, 44, 32), new Sprite(this, 0, 32, 44, 32), 
+				 new Sprite(this, 0, 64, 44, 32), new Sprite(this, 0, 96, 44, 32)],
+                [new Sprite(this, 44, 0, 44, 32), new Sprite(this, 44, 32, 44, 32), 
+				 new Sprite(this, 44, 64, 44, 32), new Sprite(this, 44, 96, 44, 32)],
+                [new Sprite(this, 88, 0, 44, 32), new Sprite(this, 88, 32, 44, 32), 
+				 new Sprite(this, 88, 64, 44, 32), new Sprite(this, 88, 96, 44, 32)]
             ];
-            taSprite = new Sprite(this, 62, 0, 22, 16);
+            taSprite = new Sprite(this, 126, 0, 91, 70);
             ciSprite = new Sprite(this, 84, 8, 36, 24);
 
             // initate and run the game
@@ -43,7 +46,7 @@
             run();
         });
 		playMusic();
-        img.src = "res/invaders2.png";
+        img.src = "res/invaders3.png";
     };
 
     /**
@@ -78,8 +81,8 @@
                 // array
                 aliens.push({
                     sprite: alSprite[a],
-                    x: 30 + j * 30 + [0, 4, 0][a],
-                    y: 30 + i * 30,
+                    x: 50 + j * 50 + [0, 4, 0][a],
+                    y: 40 + i * 40,
                     w: alSprite[a][0].w,
                     h: alSprite[a][0].h
                 });
@@ -121,7 +124,7 @@
         // append new bullet to the bullet array if spacebar is
         // pressed
         if (input.isPressed(32)) { // Space
-            bullets.push(new Bullet(player.x + 10, player.y, -8, 2, 6, "#fff"));
+            bullets.push(new Bullet(player.x + 45.5, player.y, -8, 2, 6, "#fff"));
 			var shootSfx = document.getElementById("shoot");
 			var soundcheck = document.getElementById("soundsCheck");
 			if(soundcheck.checked == 1) {
@@ -198,7 +201,7 @@
         }
         // update the aliens at the current movement frequence
         if (frames % lvFrame === 0) {
-            spFrame = (spFrame + 1) % 2;
+            spFrame = (spFrame + 1) % 4;
 
             var _max = 0, _min = screen.width;
             // iterate through aliens and update postition
