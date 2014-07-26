@@ -23,7 +23,7 @@
      */
     function main() {
         // create game canvas and inputhandeler
-        screen = new Screen(1000, 600);
+        screen = new Screen(1300, 800);
         input = new InputHandeler();
 
         // create all sprites fram assets image

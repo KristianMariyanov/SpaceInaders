@@ -63,11 +63,11 @@ body {
 
 
 #game {
-    background-image: url(../res/background.jpg);
+   background-image: url(../res/background.jpg);
 }
 
     #game canvas {
-        border: 1px solid red;
+		background-image: url(../res/background.jpg);
         display: block;
         position: absolute;
         margin: auto;
