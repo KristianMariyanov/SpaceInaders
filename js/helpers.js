@@ -1,4 +1,4 @@
-/**	
+/** 
  * Check if to axis aligned bounding boxes intersects
  *
  * @return {bool}  the check result
@@ -68,6 +68,12 @@ Screen.prototype.clear = function () {
 Screen.prototype.drawSprite = function (sp, x, y) {
     // draw part of spritesheet to canvas
     this.ctx.drawImage(sp.img, sp.x, sp.y, sp.w, sp.h, x, y, sp.w, sp.h);
+};
+
+Screen.prototype.drawScore = function(text){
+    this.ctx.font="20px Verdana";
+   
+    this.ctx.fillText(text,this.width-50,this.height-50);
 };
 
 /**
