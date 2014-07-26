@@ -146,6 +146,12 @@
             for (var j = 0, len2 = aliens.length; j < len2; j++) {
                 var a = aliens[j];
                 if (AABBIntersect(b.x, b.y, b.width, b.height, a.x, a.y, a.w, a.h)) {
+					var soundcheck = document.getElementById("soundsCheck");
+					if(soundcheck.checked == 1) {
+						var explosion = document.getElementById("boom");
+						boom.play();
+						boom.currentTime=0;
+					}
                     aliens.splice(j, 1);
                     j--;
                     len2--;
@@ -236,6 +242,10 @@
         // draw the tank sprite
         screen.drawSprite(player.sprite, player.x, player.y);
     };
+	
+	/**
+	 * Play background music
+	 */
 	function playMusic() {
 		var music = document.getElementById("backgroundMusic");
 		var musicCheck = document.getElementById("musicCheck");
