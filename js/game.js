@@ -42,6 +42,7 @@
             init();
             run();
         });
+		playMusic();
         img.src = "res/invaders2.png";
     };
 
@@ -229,6 +230,20 @@
         // draw the tank sprite
         screen.drawSprite(player.sprite, player.x, player.y);
     };
+	function playMusic() {
+		var music = document.getElementById("backgroundMusic");
+		var musicCheck = document.getElementById("musicCheck");
+		music.play();
+		musicCheck.onchange=function(){
+			if(musicCheck.checked) {
+				music.play();
+			}
+			else {
+				music.pause();
+				music.currentTime=0;
+			}
+		};
+	}
 
     // start and run the game
     main();
