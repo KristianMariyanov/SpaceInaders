@@ -11,11 +11,14 @@
     alSprite,
     taSprite,
     ciSprite,
+    expSprite,
+    bulSprite,
 
     aliens,
     dir,
     player,
     bullets,
+    collisions,
     cities;
 
     /**
@@ -23,7 +26,7 @@
      */
     function main() {
         // create game canvas and inputhandeler
-        screen = new Screen(1300, 800);
+        screen = new Screen(1300, 600);
         input = new InputHandeler();
 
         // create all sprites fram assets image
@@ -40,13 +43,19 @@
             ];
             taSprite = new Sprite(this, 126, 0, 91, 70);
             ciSprite = new Sprite(this, 84, 8, 36, 24);
+            bulSprite = new Sprite(this, 216, 0, 16, 16);
+            expSprite = [new Sprite(this,0,128,31,32),new Sprite(this,31,128,31,32),new Sprite(this,62,128,31,32),
+                new Sprite(this,93,128,31,32),new Sprite(this,124,128,31,32),new Sprite(this,155,128,31,32),
+                new Sprite(this,186,128,31,32),new Sprite(this,217,128,31,32),
+                new Sprite(this,279,128,31,32),new Sprite(this,310,128,31,32),new Sprite(this,341,128,31,32)
+            ];
 
             // initate and run the game
             init();
             run();
         });
 		playMusic();
-        img.src = "res/invaders3.png";
+        img.src = "res/invaders5.png";
     };
 
     /**
@@ -62,6 +71,8 @@
 
         // create the player object
         player = {
+            score:0,
+            lifes:10,
             sprite: taSprite,
             x: (screen.width - taSprite.w) / 2,
             y: screen.height - (30 + taSprite.h)
@@ -69,7 +80,7 @@
 
         // initatie bullet array
         bullets = [];
-
+        collisions = [];
 
         // create and populate alien array
         aliens = [];
@@ -155,6 +166,8 @@
 						boom.play();
 						boom.currentTime=0;
 					}
+                    collisions.push(new Collision(a.x, a.y));
+                    player.score+=1;
                     aliens.splice(j, 1);
                     j--;
                     len2--;
@@ -238,12 +251,28 @@
         // save contetx and draw bullet then restore
         screen.ctx.save();
         for (var i = 0, len = bullets.length; i < len; i++) {
-            screen.drawBullet(bullets[i]);
+            screen.drawSprite(bulSprite, bullets[i].x, bullets[i].y);
         }
         screen.ctx.restore();
 
-        // draw the tank sprite
+        screen.ctx.save();
+        screen.drawScore(player.score, screen.width-100, screen.height-50);
+        screen.ctx.restore();
+
+        // draw the player sprite
         screen.drawSprite(player.sprite, player.x, player.y);
+
+        //drawing explosions
+        screen.ctx.save();
+        for (var i = 0; i <collisions .length; i++) {
+            for (var j = 0; j < expSprite.length; j++) {
+                screen.ctx.save();
+                screen.drawSprite(expSprite[j], collisions[i].x, collisions[i].y);
+                screen.ctx.restore();
+            }
+        }
+        screen.ctx.restore();
+        collisions = [];
     };
 	
 	/**

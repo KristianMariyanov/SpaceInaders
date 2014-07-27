@@ -7,6 +7,9 @@ function AABBIntersect(ax, ay, aw, ah, bx, by, bw, bh) {
     return ax < bx + bw && bx < ax + aw && ay < by + bh && by < ay + ah;
 };
 
+function PPBBIntersect(ax, ay, aw, ah, bx, by, bw, bh) {
+    return  by>ay && bx > ax  && bx < ax+aw;
+};
 
 /**
  * Bullet class 
@@ -18,13 +21,14 @@ function AABBIntersect(ax, ay, aw, ah, bx, by, bw, bh) {
  * @param {number} h     height of the bullet in pixels
  * @param {string} color hex-color of bullet
  */
-function Bullet(x, y, vely, w, h, color) {
+function Bullet(x, y, vely, w, h, color,direction) {
     this.x = x;
     this.y = y;
     this.vely = vely;
     this.width = w;
     this.height = h;
     this.color = color;
+    this.direction = direction;
 };
 
 /**
@@ -35,12 +39,11 @@ Bullet.prototype.update = function () {
 };
 
 
-/**
- * Abstracted canvas class usefull in games
- * 
- * @param {number} width  width of canvas in pixels
- * @param {number} height height of canvas in pixels
- */
+function Collision(x,y){
+    this.x = x;
+    this.y = y;
+};
+
 function Screen(width, height) {
     // create canvas and grab 2d context
     this.canvas = document.createElement("canvas");
@@ -72,8 +75,14 @@ Screen.prototype.drawSprite = function (sp, x, y) {
 
 Screen.prototype.drawScore = function(text){
     this.ctx.font="20px Verdana";
-   
+    this.ctx.fillStyle = '#f00';
     this.ctx.fillText(text,this.width-50,this.height-50);
+};
+
+Screen.prototype.drawLifes = function(text){
+    this.ctx.font="20px Verdana";
+    this.ctx.fillStyle = '#f15';
+    this.ctx.fillText(text,this.width-50,this.height-10);
 };
 
 /**
