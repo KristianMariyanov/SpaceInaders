@@ -20,7 +20,7 @@
     bullets,
     collisions,
     cities;
-
+    var level = 1;
     /**
      * Initiate and start the game
      */
@@ -202,6 +202,45 @@
                             this.lvFrame = 6;
                             break;
                         }
+						case 0: {
+                            //end of level and start new one
+                            level++;
+                            //statCounter is callback function waits the code in its body to finish and than execute another function
+                            startCounter(level, function () {
+                                //levels
+                                switch (level) {
+                                    case 2: rows = [1, 1, 1, 1, 1]; break;
+                                    case 3: rows = [1, 1, 1, 1, 1]; break;
+                                    case 4: rows = [2, 2, 2, 2, 2]; break;
+                                    case 5: rows = [2, 0, 2, 0, 2]; break;
+                                    case 6: rows = [1, 2, 0, 2, 1]; break;
+                                    case 7: rows = [0, 1, 2, 1, 0]; break;
+                                    case 8: rows = [2, 0, 0, 0, 2]; break;
+                                    case 9: rows = [1, 2, 0, 2, 2]; break;
+                                    default: rows = [getRandomInt(0, 2), getRandomInt(0, 2), getRandomInt(0, 2), getRandomInt(0, 2), getRandomInt(0, 2)]; break;
+                                }
+
+                                aliens = [];
+
+                                for (var i = 0, len = rows.length; i < len; i++) {
+                                    for (var j = 0; j < 10; j++) {
+                                        var a = rows[i];
+                                        // create right offseted alien and push to alien
+                                        // array
+                                        aliens.push({
+                                            sprite: alSprite[a],
+                                            x: 50 + j * 50 + [0, 4, 0][a],
+                                            y: 40 + i * 40,
+                                            w: alSprite[a][0].w,
+                                            h: alSprite[a][0].h
+                                        });
+                                    }
+                                }
+                                render();
+
+                            });
+                            break;
+                        }
                     }
                 }
             }
@@ -303,7 +342,7 @@
 	}
 
     // start and run the game
-	window.setTimeout(main, 3000);
+	window.setTimeout(main, 3 * 800);
     window.cleartimeout();
     main();
 }());
