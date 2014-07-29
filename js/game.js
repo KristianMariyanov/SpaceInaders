@@ -294,5 +294,7 @@
 	}
 
     // start and run the game
+	window.setTimeout(main, 3000);
+    window.cleartimeout();
     main();
 }());
