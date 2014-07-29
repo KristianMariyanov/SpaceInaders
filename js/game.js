@@ -135,6 +135,15 @@
         // append new bullet to the bullet array if spacebar is
         // pressed
         if (input.isPressed(32)) { // Space
+		
+			 //fix bug when, stop music and press "space"
+            if (document.activeElement === document.getElementById("musicCheck") ||
+                document.activeElement === document.getElementById("soundsCheck")) {
+
+                document.getElementById("musicCheck").blur();
+                document.getElementById("soundsCheck").blur();
+            }
+		
             bullets.push(new Bullet(player.x + 45.5, player.y, -8, 2, 6, "#fff"));
 			var shootSfx = document.getElementById("shoot");
 			var soundcheck = document.getElementById("soundsCheck");

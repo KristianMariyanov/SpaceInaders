@@ -62,12 +62,12 @@ body {
 /*Game page*/
 
 
-#game {
-   background-image: url(../res/background.jpg);
+body#game {
+    background-image: url(../res/background.jpg);
 }
 
-    #game canvas {
-		background-image: url(../res/background.jpg);
+    body#game canvas {
+        background-image: url(../res/background.jpg);
         display: block;
         position: absolute;
         margin: auto;
@@ -75,6 +75,14 @@ body {
         bottom: 0;
         left: 0;
         right: 0;
+     }
+
+    body#game p {
+        position: absolute;
+        z-index: 2;
+        top: 10%;
+        right: 10%;
+        font-size: 0.5em;
     }
 
 

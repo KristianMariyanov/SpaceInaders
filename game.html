@@ -9,15 +9,18 @@
     <script src="js/start.js"></script>
 </head>
 <body id="game" onload="startCounter()">
-	<form>
-		<p align=right>
-			<audio id="backgroundMusic" src="sounds/backgroundmusic.mp3" type="audio/mpeg"></audio>
-			<audio id="shoot" src="sounds/shoot.mp3" type="audio/mpeg"></audio>
-			<audio id="boom" src="sounds/explosion.mp3" type="audio/mpeg"></audio>
-			<input type="checkbox" id="musicCheck" value="Background" checked>Music<br>
-			<input type="checkbox" id="soundsCheck" value="sfx" checked>Sounds<br>
-		</p>
-	</form>
+    <form>
+        <p>
+            <audio id="backgroundMusic" src="sounds/backgroundmusic.mp3" type="audio/mpeg"></audio>
+            <audio id="shoot" src="sounds/shoot.mp3" type="audio/mpeg"></audio>
+            <audio id="boom" src="sounds/explosion.mp3" type="audio/mpeg"></audio>
+
+            <input type="checkbox" id="musicCheck" value="Background" checked>
+            <label for="musicCheck">Music</label><br>
+            <input type="checkbox" id="soundsCheck" value="sfx" checked>
+            <label for="soundsCheck">Sounds</label><br>
+        </p>
+    </form>
     <script src="js/game.js"></script>
 </body>
 </html>
