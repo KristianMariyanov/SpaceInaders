@@ -72,10 +72,12 @@
         // create the player object
         player = {
             score:0,
-            lifes:10,
+            lifes:100,
             sprite: taSprite,
             x: (screen.width - taSprite.w) / 2,
-            y: screen.height - (30 + taSprite.h)
+            y: screen.height - (30 + taSprite.h),
+			w: taSprite.w,
+			h: taSprite.h
         };
 
         // initatie bullet array
@@ -164,6 +166,13 @@
                 len--;
                 continue;
             }
+			//check if bullet hit the player
+			if (PPBBIntersect(player.x, player.y, player.w, player.h, b.x, b.y, b.width, b.height)) {
+				player.lifes -=10;
+				bullets.splice(i, 1);
+				i--;
+				len--;
+			}
 
             // check if bullet hit any aliens
             for (var j = 0, len2 = aliens.length; j < len2; j++) {
@@ -302,9 +311,14 @@
             screen.drawSprite(bulSprite, bullets[i].x, bullets[i].y);
         }
         screen.ctx.restore();
-
+		//drawnPlayerScore
         screen.ctx.save();
         screen.drawScore(player.score, screen.width-100, screen.height-50);
+        screen.ctx.restore();
+		
+		//drawnPlayerLifes
+		screen.ctx.save();
+        screen.drawLifes(player.lifes, screen.width-150, screen.height-50);
         screen.ctx.restore();
 
         // draw the player sprite

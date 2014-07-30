@@ -7,8 +7,8 @@ function AABBIntersect(ax, ay, aw, ah, bx, by, bw, bh) {
     return ax < bx + bw && bx < ax + aw && ay < by + bh && by < ay + ah;
 };
 
-function PPBBIntersect(ax, ay, aw, ah, bx, by, bw, bh) {
-    return  by>ay && bx > ax  && bx < ax+aw;
+function PPBBIntersect(px, py, pw, ph, bx, by, bw, bh) {
+    return  py < by + bh && bx > px - bw && bx < px + pw;
 };
 
 /**
