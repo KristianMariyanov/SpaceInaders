@@ -15,6 +15,9 @@
 	expSpriteBul,
     bulSprite,
     bulDownSprite,
+    canvasCollisionArray,
+    canvasUpSprite,
+    canvasDownSprite,
 
     aliens,
     dir,
@@ -64,6 +67,8 @@
             ciSprite = new Sprite(this, 84, 8, 36, 24);
             bulSprite = new Sprite(this, 216, 0, 16, 16);
             bulDownSprite = new Sprite(this, 232, 0, 16, 16);
+            canvasUpSprite = new Sprite(this, 216, 16, 43, 24);
+            canvasDownSprite = new Sprite(this, 216, 42, 43, 24);
             expSprite = [new Sprite(this,0,128,31,32),new Sprite(this,31,128,31,32),new Sprite(this,62,128,31,32),
                 new Sprite(this,93,128,31,32),new Sprite(this,124,128,31,32),new Sprite(this,155,128,31,32),
                 new Sprite(this,186,128,31,32),new Sprite(this,217,128,31,32),
@@ -80,7 +85,7 @@
             run();
         });
 		playMusic();
-        img.src = "res/invaders6.png";
+        img.src = "res/invaders8.png";
     };
 
     /**
@@ -109,6 +114,7 @@
         bullets = [];
         collisions = [];
 		collisionsBul = [];
+        canvasCollisionArray= [];
 
         // create and populate alien array
         aliens = [];
@@ -187,6 +193,7 @@
             b.update();
             // remove bullets outside of the canvas
             if (b.y + b.height < 0 || b.y > screen.height) {
+                canvasCollisionArray.push(new canvasCollision(b.x, b.y, b.direction));
                 bullets.splice(i, 1);
                 i--;
                 len--;
@@ -384,6 +391,7 @@
                 screen.ctx.restore();
             }
         }
+
 		for (var i = 0; i <collisionsBul.length; i++) {
             for (var j = 0; j < expSpriteBul.length; j++) {
                 screen.ctx.save();
@@ -391,9 +399,18 @@
                 screen.ctx.restore();
             }
         }
+
+        //drawing explosions on interaction with the canvas
+        screen.ctx.save();
+        for (var i = 0; i < canvasCollisionArray.length; i++) {
+            if(canvasCollisionArray[i].direction == 'up'){
+                screen.drawSprite(canvasUpSprite, canvasCollisionArray[i].x, canvasCollisionArray[i].y+5);
+            }
+        }
         screen.ctx.restore();
         collisions = [];
 		collisionsBul = [];
+        canvasCollisionArray = [];
     };
 	
 	/**
@@ -416,6 +433,6 @@
 
     // start and run the game
 	window.setTimeout(main, 3 * 800);
-    window.cleartimeout();
+    window.clearTimeout();
     main();
 }());

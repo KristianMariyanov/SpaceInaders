@@ -48,6 +48,12 @@ function Collision(x,y){
     this.y = y;
 };
 
+function canvasCollision(x,y,direction){
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
+}
+
 function Screen(width, height) {
     // create canvas and grab 2d context
     this.canvas = document.createElement("canvas");
