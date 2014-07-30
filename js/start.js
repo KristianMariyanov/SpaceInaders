@@ -1,13 +1,15 @@
 ﻿function startCounter(level, callback) {
     var div = document.createElement("div");
-    div.style.position = "absolute";
+    div.style.position = "fixed";
     div.style.width = "500px";
-    div.style.top = "45%";
-    div.style.left = "38%";
+    div.style.marginLeft = "-250px";
+    div.style.marginTop = "-50px"
+    div.style.top = "50%";
+    div.style.left = "50%";
     div.style.zIndex = "10";
     div.style.textAlign = "center";
     div.style.fontSize = "1.5em";
-	div.innerHTML = "Level " + level;
+    div.innerHTML = "Level " + level;
 
     document.body.insertBefore(div, document.body.firstChild);
     var sec = 0;
