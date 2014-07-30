@@ -28,4 +28,13 @@
         }
     }
 }
+function IfKiledMenu(score) {
+    var hidden = document.getElementsByClassName("hidden");
+    for (var i = 0; i < hidden.length; i++) {
+        hidden[i].style.display = "initial";
+    }
+    var h = document.getElementsByTagName("h2");
+    h[0].innerHTML += "\nYour score is " + score;
+    return 0.1; // return 0.1 to avoid enter in check is player is alive, again
+}
 

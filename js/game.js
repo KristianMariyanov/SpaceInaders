@@ -157,10 +157,10 @@
         frames++;
 
         // update player position depending on pressed keys
-        if (input.isDown(37)) { // Left
+        if (input.isDown(37) && player.lifes > 0) { // Left
             player.x -= 4;
         }
-        if (input.isDown(39)) { // Right
+        if (input.isDown(39) && player.lifes > 0) { // Right
             player.x += 4;
         }
         // keep the player sprite inside of the canvas
@@ -168,7 +168,7 @@
 
         // append new bullet to the bullet array if spacebar is
         // pressed
-        if (input.isPressed(32)) { // Space
+        if (input.isPressed(32) && player.lifes > 0) { // Space
 		
 			 //fix bug when, stop music and press "space"
             if (document.activeElement === document.getElementById("musicCheck") ||
@@ -208,6 +208,12 @@
 				i--;
 				len--;
 			}
+			
+			//cheack if player still have live
+            if (player.lifes <= 0) {
+                player.y = 1300;
+                player.lifes = IfKiledMenu(player.score);
+            }
 
             // check if bullet hit any aliens
             for (var j = 0, len2 = aliens.length; j < len2; j++) {
@@ -376,7 +382,7 @@
 		
 		//drawnPlayerLifes
 		screen.ctx.save();
-        screen.drawLifes(player.lifes, screen.width-150, screen.height-50);
+        screen.drawLifes(player.lifes.toFixed(0), screen.width-150, screen.height-50);
         screen.ctx.restore();
 
         // draw the player sprite
@@ -433,6 +439,6 @@
 
     // start and run the game
 	window.setTimeout(main, 3 * 800);
-    window.clearTimeout();
+    window.cleartimeout();
     main();
 }());

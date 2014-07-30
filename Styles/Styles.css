@@ -75,7 +75,7 @@ body#game {
         bottom: 0;
         left: 0;
         right: 0;
-     }
+    }
 
     body#game p {
         position: absolute;
@@ -83,6 +83,35 @@ body#game {
         top: 10%;
         right: 10%;
         font-size: 0.5em;
+    }
+
+    body#game h1.hidden {
+        display: table-row;
+        position: absolute;
+        z-index: 2;
+        top: 21%;
+        left: 34%;
+        text-align: center;
+        width: 30%;
+    }
+
+    body#game h2.hidden {
+        display: table-row;
+        position: absolute;
+        z-index: 2;
+        top: 32%;
+        left: 34%;
+        text-align: center;
+        width: 30%;
+    }
+
+    body#game a.hidden {
+        position: absolute;
+        z-index: 2;
+        top: 45%;
+        left: 41%;
+        text-align: center;
+        width: 14%;
     }
 
 
