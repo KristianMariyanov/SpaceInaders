@@ -203,6 +203,12 @@
 			
 			//check if bullet hit the player
 			if (PPBBIntersect(player.x, player.y, player.w, player.h, b.x, b.y, b.width, b.height)) {
+				var soundcheck = document.getElementById("soundsCheck");
+				if(soundcheck.checked) {
+					var hit = document.getElementById("hit");
+					hit.play();
+					hit.currentTime = 0;
+				}
 				player.lifes -=10;
 				bullets.splice(i, 1);
 				i--;
@@ -213,6 +219,12 @@
             if (player.lifes <= 0) {
                 player.y = 1300;
                 player.lifes = IfKiledMenu(player.score);
+				var soundcheck = document.getElementById("soundsCheck");
+				if(soundcheck.checked == 1) {
+					var gameOver = document.getElementById("gameOver");
+					gameOver.play();
+					gameOver.currentTime = 0;
+				}
             }
 
             // check if bullet hit any aliens
@@ -222,8 +234,8 @@
 					var soundcheck = document.getElementById("soundsCheck");
 					if(soundcheck.checked == 1) {
 						var explosion = document.getElementById("boom");
-						boom.play();
-						boom.currentTime = 0;
+						explosion.play();
+						explosion.currentTime = 0;
 					}
                     collisions.push(new Collision(a.x, a.y));
                     player.score += 1;
@@ -255,6 +267,12 @@
 						case 0: {
                             //end of level and start new one
                             level++;
+							var soundcheck = document.getElementById("soundsCheck");
+							if(soundcheck.checked) {
+								var levelUp = document.getElementById("levelUp");
+								levelUp.play();
+								levelUp.currentTime = 0;
+							}
                             //statCounter is callback function waits the code in its body to finish and than execute another function
                             startCounter(level, function () {
                                 //levels
@@ -307,6 +325,12 @@
 						i--;
 						len-=2;
 						j--;
+						var soundcheck = document.getElementById("soundsCheck");
+						if(soundcheck.checked) {
+							var ricochet = document.getElementById("ricochet");
+							ricochet.play();
+							ricochet.currentTime = 0;
+						}
 						break;
 						
 					}
@@ -425,7 +449,9 @@
 	function playMusic() {
 		var music = document.getElementById("backgroundMusic");
 		var musicCheck = document.getElementById("musicCheck");
-		music.play();
+		if(musicCheck.checked) {
+				music.play();
+		}
 		musicCheck.onchange=function(){
 			if(musicCheck.checked) {
 				music.play();
