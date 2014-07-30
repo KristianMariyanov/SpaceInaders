@@ -39,7 +39,15 @@
                 [new Sprite(this, 44, 0, 44, 32), new Sprite(this, 44, 32, 44, 32), 
 				 new Sprite(this, 44, 64, 44, 32), new Sprite(this, 44, 96, 44, 32)],
                 [new Sprite(this, 88, 0, 44, 32), new Sprite(this, 88, 32, 44, 32), 
-				 new Sprite(this, 88, 64, 44, 32), new Sprite(this, 88, 96, 44, 32)]
+				 new Sprite(this, 88, 64, 44, 32), new Sprite(this, 88, 96, 44, 32)],
+				[new Sprite(this, 0, 191, 44, 32), new Sprite(this, 0, 223, 44, 32), 
+				 new Sprite(this, 0, 255, 44, 32), new Sprite(this, 0, 287, 44, 32)],
+				[new Sprite(this, 44, 191, 44, 32), new Sprite(this, 44, 223, 44, 32), 
+				 new Sprite(this, 44, 255, 44, 32), new Sprite(this, 44, 287, 44, 32)],
+				[new Sprite(this, 88, 191, 44, 32), new Sprite(this, 88, 223, 44, 32), 
+				 new Sprite(this, 88, 255, 44, 32), new Sprite(this, 88, 287, 44, 32)],
+				[new Sprite(this, 132, 191, 44, 32), new Sprite(this, 132, 223, 44, 32), 
+				 new Sprite(this, 132, 255, 44, 32), new Sprite(this, 132, 287, 44, 32)]
             ];
             taSprite = new Sprite(this, 126, 0, 91, 70);
             ciSprite = new Sprite(this, 84, 8, 36, 24);
