@@ -173,10 +173,10 @@
 					if(soundcheck.checked == 1) {
 						var explosion = document.getElementById("boom");
 						boom.play();
-						boom.currentTime=0;
+						boom.currentTime = 0;
 					}
                     collisions.push(new Collision(a.x, a.y));
-                    player.score+=1;
+                    player.score += 1;
                     aliens.splice(j, 1);
                     j--;
                     len2--;
