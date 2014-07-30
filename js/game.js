@@ -13,6 +13,7 @@
     ciSprite,
     expSprite,
     bulSprite,
+    bulDownSprite,
 
     aliens,
     dir,
@@ -52,6 +53,7 @@
             taSprite = new Sprite(this, 126, 0, 91, 70);
             ciSprite = new Sprite(this, 84, 8, 36, 24);
             bulSprite = new Sprite(this, 216, 0, 16, 16);
+            bulDownSprite = new Sprite(this, 232, 0, 16, 16);
             expSprite = [new Sprite(this,0,128,31,32),new Sprite(this,31,128,31,32),new Sprite(this,62,128,31,32),
                 new Sprite(this,93,128,31,32),new Sprite(this,124,128,31,32),new Sprite(this,155,128,31,32),
                 new Sprite(this,186,128,31,32),new Sprite(this,217,128,31,32),
@@ -63,7 +65,7 @@
             run();
         });
 		playMusic();
-        img.src = "res/invaders5.png";
+        img.src = "res/invaders6.png";
     };
 
     /**
@@ -154,7 +156,7 @@
                 document.getElementById("soundsCheck").blur();
             }
 		
-            bullets.push(new Bullet(player.x + 45.5, player.y, -8, 2, 6, "#fff"));
+            bullets.push(new Bullet(player.x + 45.5, player.y, -8, 2, 6, "#fff",'up'));
 			var shootSfx = document.getElementById("shoot");
 			var soundcheck = document.getElementById("soundsCheck");
 			if(soundcheck.checked == 1) {
@@ -275,7 +277,7 @@
                 }
             }
             // create and append new bullet
-            bullets.push(new Bullet(a.x + a.w * 0.5, a.y + a.h, 4, 2, 4, "#fff"));
+            bullets.push(new Bullet(a.x + a.w * 0.5, a.y + a.h, 4, 2, 4, "#fff",'down'));
         }
         // update the aliens at the current movement frequence
         if (frames % lvFrame === 0) {
@@ -316,7 +318,12 @@
         // save contetx and draw bullet then restore
         screen.ctx.save();
         for (var i = 0, len = bullets.length; i < len; i++) {
-            screen.drawSprite(bulSprite, bullets[i].x, bullets[i].y);
+            if(bullets[i].direction == 'up'){
+                screen.drawSprite(bulSprite, bullets[i].x, bullets[i].y);
+            }
+            else{
+                screen.drawSprite(bulDownSprite, bullets[i].x, bullets[i].y);
+            }
         }
         screen.ctx.restore();
 		//drawnPlayerScore
