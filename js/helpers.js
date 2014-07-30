@@ -11,6 +11,10 @@ function PPBBIntersect(px, py, pw, ph, bx, by, bw, bh) {
     return  py < by + bh && bx > px - bw && bx < px + pw;
 };
 
+function BBBBIntersect(bulx, buly, bulw, bulh, bx, by, bw, bh) {
+    return  bulx + bulh >= bx && bulx < bx + bh && buly + bulw > by && buly <= by + bw;
+};
+
 /**
  * Bullet class 
  * 

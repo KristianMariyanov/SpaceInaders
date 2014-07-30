@@ -12,6 +12,7 @@
     taSprite,
     ciSprite,
     expSprite,
+	expSpriteBul,
     bulSprite,
     bulDownSprite,
 
@@ -20,6 +21,7 @@
     player,
     bullets,
     collisions,
+	collisionsBul,
     cities;
     var level = 1;
     /**
@@ -59,6 +61,11 @@
                 new Sprite(this,186,128,31,32),new Sprite(this,217,128,31,32),
                 new Sprite(this,279,128,31,32),new Sprite(this,310,128,31,32),new Sprite(this,341,128,31,32)
             ];
+			expSpriteBul = [
+                new Sprite(this,0,160,31,32),new Sprite(this,31,160,31,32),new Sprite(this,62,160,31,32),
+                new Sprite(this,93,160,31,32),new Sprite(this,124,160,31,32),
+                new Sprite(this,155,160,31,32),new Sprite(this,186,160,31,32),new Sprite(this,217,160,31,32)
+            ];
 
             // initate and run the game
             init();
@@ -93,6 +100,7 @@
         // initatie bullet array
         bullets = [];
         collisions = [];
+		collisionsBul = [];
 
         // create and populate alien array
         aliens = [];
@@ -176,6 +184,8 @@
                 len--;
                 continue;
             }
+			
+			
 			//check if bullet hit the player
 			if (PPBBIntersect(player.x, player.y, player.w, player.h, b.x, b.y, b.width, b.height)) {
 				player.lifes -=10;
@@ -187,7 +197,7 @@
             // check if bullet hit any aliens
             for (var j = 0, len2 = aliens.length; j < len2; j++) {
                 var a = aliens[j];
-                if (AABBIntersect(b.x, b.y, b.width, b.height, a.x, a.y, a.w, a.h)) {
+                if (b.direction === 'up' && AABBIntersect(b.x, b.y, b.width, b.height, a.x, a.y, a.w, a.h)) {
 					var soundcheck = document.getElementById("soundsCheck");
 					if(soundcheck.checked == 1) {
 						var explosion = document.getElementById("boom");
@@ -263,6 +273,25 @@
                     }
                 }
             }
+			for (var j = 0; j < len; j++) {
+				var bul = bullets[j];
+				//console.log('inside');
+				
+				if (bul.direction !== b.direction){
+				
+					if (BBBBIntersect(bul.x, bul.y, bul.width, bul.height, b.x, b.y, b.width, b.height)) {
+					debugger;
+					collisionsBul.push(new Collision(bul.x, bul.y));
+						bullets.splice(i, 1);
+						bullets.splice(j, 1);
+						i--;
+						len-=2;
+						j--;
+						break;
+						
+					}
+				}
+			}
         }
         // makes the alien shoot in an random fashion
         if (Math.random() < 0.03 && aliens.length > 0) {
@@ -348,8 +377,16 @@
                 screen.ctx.restore();
             }
         }
+		for (var i = 0; i <collisionsBul.length; i++) {
+            for (var j = 0; j < expSpriteBul.length; j++) {
+                screen.ctx.save();
+                screen.drawSprite(expSpriteBul[j], collisionsBul[i].x, collisionsBul[i].y);
+                screen.ctx.restore();
+            }
+        }
         screen.ctx.restore();
         collisions = [];
+		collisionsBul = [];
     };
 	
 	/**
