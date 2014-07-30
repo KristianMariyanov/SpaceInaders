@@ -50,7 +50,15 @@
 				[new Sprite(this, 88, 191, 44, 32), new Sprite(this, 88, 223, 44, 32), 
 				 new Sprite(this, 88, 255, 44, 32), new Sprite(this, 88, 287, 44, 32)],
 				[new Sprite(this, 132, 191, 44, 32), new Sprite(this, 132, 223, 44, 32), 
-				 new Sprite(this, 132, 255, 44, 32), new Sprite(this, 132, 287, 44, 32)]
+				 new Sprite(this, 132, 255, 44, 32), new Sprite(this, 132, 287, 44, 32)],
+				[new Sprite(this, 0, 319, 44, 32), new Sprite(this, 0, 351, 44, 32), //dsa
+				 new Sprite(this, 0, 383, 44, 32), new Sprite(this, 0, 415, 44, 32)],
+				[new Sprite(this, 44, 319, 44, 32), new Sprite(this, 44, 351, 44, 32), 
+				 new Sprite(this, 44, 383, 44, 32), new Sprite(this, 44, 415, 44, 32)],
+				[new Sprite(this, 88, 319, 44, 32), new Sprite(this, 88, 351, 44, 32), 
+				 new Sprite(this, 88, 383, 44, 32), new Sprite(this, 88, 415, 44, 32)],
+				[new Sprite(this, 132, 319, 44, 32), new Sprite(this, 132, 351, 44, 32), 
+				 new Sprite(this, 132, 383, 44, 32), new Sprite(this, 132, 415, 44, 32)]
             ];
             taSprite = new Sprite(this, 126, 0, 91, 70);
             ciSprite = new Sprite(this, 84, 8, 36, 24);
@@ -238,8 +246,8 @@
                             startCounter(level, function () {
                                 //levels
                                 switch (level) {
-                                    case 2: rows = [1, 1, 1, 1, 1]; break;
-                                    case 3: rows = [1, 1, 1, 1, 1]; break;
+                                    case 2: rows = [7, 8, 9, 9, 10]; break;
+                                    case 3: rows = [3, 4, 5, 5, 6]; break;
                                     case 4: rows = [2, 2, 2, 2, 2]; break;
                                     case 5: rows = [2, 0, 2, 0, 2]; break;
                                     case 6: rows = [1, 2, 0, 2, 1]; break;
@@ -250,7 +258,7 @@
                                 }
 
                                 aliens = [];
-
+								debugger;
                                 for (var i = 0, len = rows.length; i < len; i++) {
                                     for (var j = 0; j < 10; j++) {
                                         var a = rows[i];
@@ -258,7 +266,7 @@
                                         // array
                                         aliens.push({
                                             sprite: alSprite[a],
-                                            x: 50 + j * 50 + [0, 4, 0][a],
+                                            x: 50 + j * 50 ,
                                             y: 40 + i * 40,
                                             w: alSprite[a][0].w,
                                             h: alSprite[a][0].h
@@ -280,7 +288,6 @@
 				if (bul.direction !== b.direction){
 				
 					if (BBBBIntersect(bul.x, bul.y, bul.width, bul.height, b.x, b.y, b.width, b.height)) {
-					debugger;
 					collisionsBul.push(new Collision(bul.x, bul.y));
 						bullets.splice(i, 1);
 						bullets.splice(j, 1);
