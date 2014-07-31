@@ -27,6 +27,7 @@
 	collisionsBul,
     cities;
     var level = 1;
+	var scoreAfterDeath;
     /**
      * Initiate and start the game
      */
@@ -218,7 +219,8 @@
 			//cheack if player still have live
             if (player.lifes <= 0) {
                 player.y = 1300;
-                player.lifes = IfKiledMenu(player.score);
+                scoreAfterDeath = player.score;
+                player.lifes = IfKiledMenu(scoreAfterDeath);
 				var soundcheck = document.getElementById("soundsCheck");
 				if(soundcheck.checked == 1) {
 					var gameOver = document.getElementById("gameOver");
@@ -401,7 +403,12 @@
         screen.ctx.restore();
 		//drawnPlayerScore
         screen.ctx.save();
-        screen.drawScore(player.score, screen.width-100, screen.height-50);
+         //score after death to be equal to display score at end
+        if (player.lifes <= 0.1) {
+            screen.drawScore(scoreAfterDeath, screen.width - 100, screen.height - 50);
+        } else {
+            screen.drawScore(player.score, screen.width - 100, screen.height - 50);
+        }
         screen.ctx.restore();
 		
 		//drawnPlayerLifes
